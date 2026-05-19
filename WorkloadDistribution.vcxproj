@@ -67,12 +67,14 @@
     <ClCompile Include="data.cpp" />
     <ClCompile Include="ui.cpp" />
     <ClCompile Include="report.cpp" />
+    <ClCompile Include="storage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="models.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="ui.h" />
     <ClInclude Include="report.h" />
+    <ClInclude Include="storage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
