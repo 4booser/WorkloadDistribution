@@ -1,5 +1,6 @@
 #include "data.h"
 #include "report.h"
+#include "storage.h"
 #include "ui.h"
 
 #include <clocale>
@@ -19,7 +20,7 @@ int main() {
     SetConsoleOutputCP(65001);
 #endif
 
-    fillDemoData();
+    loadData();
 
     int choice;
 
@@ -59,6 +60,7 @@ int main() {
             printTeacherSummary();
             break;
         case EXIT_CODE:
+            saveData();
             cout << "Роботу завершено." << endl;
             break;
         default:
