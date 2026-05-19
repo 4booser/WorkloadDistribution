@@ -1,0 +1,15 @@
+workload
+*.exe
+*.o
+*.obj
+*.out
+
+teachers.txt
+subjects.txt
+groups.txt
+workloads.txt
+
+.vs/
+x64/
+Debug/
+Release/
