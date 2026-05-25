@@ -11,10 +11,10 @@ using namespace std;
 void printTeachers() {
     printLine();
     cout << left << setw(5) << "ID"
-         << setw(32) << "ПІБ"
-         << setw(25) << "Підрозділ"
-         << setw(10) << "Норма"
-         << setw(10) << "Факт" << endl;
+         << setw(32) << "Full name"
+         << setw(25) << "Department"
+         << setw(10) << "Max"
+         << setw(10) << "Fact" << endl;
     printLine();
 
     for (const Teacher& teacher : teachers) {
@@ -29,9 +29,9 @@ void printTeachers() {
 void printSubjects() {
     printLine();
     cout << left << setw(5) << "ID"
-         << setw(35) << "Дисципліна"
-         << setw(12) << "Семестр"
-         << setw(10) << "Години" << endl;
+         << setw(35) << "Subject"
+         << setw(12) << "Semester"
+         << setw(10) << "Hours" << endl;
     printLine();
 
     for (const Subject& subject : subjects) {
@@ -45,9 +45,9 @@ void printSubjects() {
 void printGroups() {
     printLine();
     cout << left << setw(5) << "ID"
-         << setw(15) << "Група"
-         << setw(10) << "Курс"
-         << setw(30) << "Спеціальність" << endl;
+         << setw(15) << "Group"
+         << setw(10) << "Course"
+         << setw(30) << "Speciality" << endl;
     printLine();
 
     for (const Group& group : groups) {
@@ -74,11 +74,11 @@ void printWorkloadRow(const Workload& item) {
 void printAllWorkloads() {
     printLine();
     cout << left << setw(5) << "ID"
-         << setw(28) << "Викладач"
-         << setw(28) << "Дисципліна"
-         << setw(12) << "Група"
-         << setw(18) << "Вид"
-         << setw(8) << "Год." << endl;
+         << setw(28) << "Teacher"
+         << setw(28) << "Subject"
+         << setw(12) << "Group"
+         << setw(18) << "Type"
+         << setw(8) << "Hours" << endl;
     printLine();
 
     for (const Workload& item : workloads) {
@@ -89,15 +89,15 @@ void printAllWorkloads() {
 void printTeacherSummary() {
     printLine();
     cout << left << setw(5) << "ID"
-         << setw(35) << "Викладач"
-         << setw(12) << "Норма"
-         << setw(12) << "Факт"
-         << setw(20) << "Стан" << endl;
+         << setw(35) << "Teacher"
+         << setw(12) << "Max"
+         << setw(12) << "Fact"
+         << setw(20) << "State" << endl;
     printLine();
 
     for (const Teacher& teacher : teachers) {
         int total = calculateTeacherHours(teacher.id);
-        string state = total > teacher.maxHours ? "перевищення" : "норма";
+        string state = total > teacher.maxHours ? "exceeded" : "normal";
 
         cout << left << setw(5) << teacher.id
              << setw(35) << teacher.fullName
