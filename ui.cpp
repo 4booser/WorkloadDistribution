@@ -12,7 +12,7 @@ int readInt(const string& message) {
     while (!(cin >> value)) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Помилка введення. Повторіть: ";
+        cout << "Input error. Try again: ";
     }
 
     return value;
@@ -33,16 +33,16 @@ void printLine() {
 
 void showMenu() {
     cout << endl;
-    cout << "========== РОЗПОДІЛ УЧБОВОГО НАВАНТАЖЕННЯ ==========" << endl;
-    cout << "1. Додати викладача" << endl;
-    cout << "2. Додати дисципліну" << endl;
-    cout << "3. Додати групу" << endl;
-    cout << "4. Додати запис навантаження" << endl;
-    cout << "5. Переглянути викладачів" << endl;
-    cout << "6. Переглянути дисципліни" << endl;
-    cout << "7. Переглянути групи" << endl;
-    cout << "8. Переглянути всі записи навантаження" << endl;
-    cout << "9. Пошук" << endl;
-    cout << "10. Підсумковий звіт" << endl;
-    cout << "0. Вихід" << endl;
+    cout << "========== WORKLOAD DISTRIBUTION ==========" << endl;
+    cout << "1. Add teacher" << endl;
+    cout << "2. Add subject" << endl;
+    cout << "3. Add group" << endl;
+    cout << "4. Add workload record" << endl;
+    cout << "5. Show teachers" << endl;
+    cout << "6. Show subjects" << endl;
+    cout << "7. Show groups" << endl;
+    cout << "8. Show all workload records" << endl;
+    cout << "9. Search" << endl;
+    cout << "10. Summary report" << endl;
+    cout << "0. Exit" << endl;
 }
