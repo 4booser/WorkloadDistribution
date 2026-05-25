@@ -208,9 +208,9 @@ bool saveData() {
                   saveWorkloads();
 
     if (result) {
-        cout << "Data saved." << endl;
+        cout << "Дані збережено." << endl;
     } else {
-        cout << "Data saving error." << endl;
+        cout << "Помилка збереження даних." << endl;
     }
 
     return result;
