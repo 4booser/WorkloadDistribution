@@ -3,18 +3,32 @@
 #include "storage.h"
 #include "ui.h"
 
+#include <clocale>
+#include <cstdlib>
 #include <iostream>
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 using namespace std;
 
 int main() {
+    setlocale(LC_ALL, "");
+
+#ifdef _WIN32
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+    system("chcp 65001 > nul");
+#endif
+
     loadData();
 
     int choice;
 
     do {
         showMenu();
-        choice = readInt("Choose menu item: ");
+        choice = readInt("Оберіть пункт меню: ");
 
         switch (choice) {
         case 1:
@@ -49,10 +63,10 @@ int main() {
             break;
         case EXIT_CODE:
             saveData();
-            cout << "Program finished." << endl;
+            cout << "Роботу завершено." << endl;
             break;
         default:
-            cout << "Wrong menu item." << endl;
+            cout << "Невірний пункт меню." << endl;
             break;
         }
     } while (choice != EXIT_CODE);
