@@ -17,9 +17,9 @@ int main() {
     setlocale(LC_ALL, "");
 
 #ifdef _WIN32
-    SetConsoleCP(CP_UTF8);
-    SetConsoleOutputCP(CP_UTF8);
-    system("chcp 65001 > nul");
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    system("chcp 1251 > nul");
 #endif
 
     loadData();
