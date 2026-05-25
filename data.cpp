@@ -51,45 +51,45 @@ void addTeacher() {
     Teacher teacher;
 
     teacher.id = (int)teachers.size() + 1;
-    teacher.fullName = readLine("Enter teacher full name: ");
-    teacher.department = readLine("Enter department: ");
-    teacher.maxHours = readInt("Enter max hours: ");
+    teacher.fullName = readLine("Введіть ПІБ викладача: ");
+    teacher.department = readLine("Введіть назву підрозділу: ");
+    teacher.maxHours = readInt("Введіть максимальне навантаження: ");
 
     if (teacher.maxHours <= 0) {
         teacher.maxHours = DEFAULT_MAX_HOURS;
     }
 
     teachers.push_back(teacher);
-    cout << "Teacher added. ID = " << teacher.id << endl;
+    cout << "Викладача додано. ID = " << teacher.id << endl;
 }
 
 void addSubject() {
     Subject subject;
 
     subject.id = (int)subjects.size() + 1;
-    subject.name = readLine("Enter subject name: ");
-    subject.semester = readInt("Enter semester: ");
-    subject.planHours = readInt("Enter planned hours: ");
+    subject.name = readLine("Введіть назву дисципліни: ");
+    subject.semester = readInt("Введіть семестр: ");
+    subject.planHours = readInt("Введіть планову кількість годин: ");
 
     if (subject.planHours < MIN_HOURS) {
-        cout << "Hours must be positive." << endl;
+        cout << "Кількість годин повинна бути додатною." << endl;
         return;
     }
 
     subjects.push_back(subject);
-    cout << "Subject added. ID = " << subject.id << endl;
+    cout << "Дисципліну додано. ID = " << subject.id << endl;
 }
 
 void addGroup() {
     Group group;
 
     group.id = (int)groups.size() + 1;
-    group.name = readLine("Enter group name: ");
-    group.course = readInt("Enter course: ");
-    group.speciality = readLine("Enter speciality: ");
+    group.name = readLine("Введіть назву групи: ");
+    group.course = readInt("Введіть курс: ");
+    group.speciality = readLine("Введіть спеціальність: ");
 
     groups.push_back(group);
-    cout << "Group added. ID = " << group.id << endl;
+    cout << "Групу додано. ID = " << group.id << endl;
 }
 
 int calculateTeacherHours(int teacherId) {
@@ -106,20 +106,20 @@ int calculateTeacherHours(int teacherId) {
 
 void addWorkload() {
     if (teachers.empty() || subjects.empty() || groups.empty()) {
-        cout << "First add teacher, subject and group." << endl;
+        cout << "Спочатку потрібно додати викладача, дисципліну та групу." << endl;
         return;
     }
 
-    int teacherId = readInt("Enter teacher ID: ");
-    int subjectId = readInt("Enter subject ID: ");
-    int groupId = readInt("Enter group ID: ");
+    int teacherId = readInt("Введіть ID викладача: ");
+    int subjectId = readInt("Введіть ID дисципліни: ");
+    int groupId = readInt("Введіть ID групи: ");
 
     Teacher* teacher = findTeacherById(teacherId);
     Subject* subject = findSubjectById(subjectId);
     Group* group = findGroupById(groupId);
 
     if (teacher == nullptr || subject == nullptr || group == nullptr) {
-        cout << "Error. One of the IDs was not found." << endl;
+        cout << "Помилка. Один із ідентифікаторів не знайдено." << endl;
         return;
     }
 
@@ -129,29 +129,29 @@ void addWorkload() {
     item.teacherId = teacherId;
     item.subjectId = subjectId;
     item.groupId = groupId;
-    item.lessonType = readLine("Enter lesson type: ");
-    item.hours = readInt("Enter hours: ");
+    item.lessonType = readLine("Введіть вид заняття: ");
+    item.hours = readInt("Введіть кількість годин: ");
 
     if (item.hours < MIN_HOURS) {
-        cout << "Hours must be positive." << endl;
+        cout << "Кількість годин повинна бути додатною." << endl;
         return;
     }
 
     if (calculateTeacherHours(teacherId) + item.hours > teacher->maxHours) {
-        cout << "Warning: teacher max hours will be exceeded." << endl;
+        cout << "Увага: після додавання буде перевищено норму викладача." << endl;
     }
 
     workloads.push_back(item);
-    cout << "Workload record added." << endl;
+    cout << "Запис навантаження створено." << endl;
 }
 
 void searchWorkloads() {
-    string query = readLine("Enter search keyword: ");
+    string query = readLine("Введіть ключове слово для пошуку: ");
     string normalizedQuery = toLowerText(query);
     bool found = false;
 
     printLine();
-    cout << "Search results" << endl;
+    cout << "Результати пошуку" << endl;
     printLine();
 
     for (const Workload& item : workloads) {
@@ -172,26 +172,26 @@ void searchWorkloads() {
     }
 
     if (!found) {
-        cout << "Records not found." << endl;
+        cout << "Записи не знайдено." << endl;
     }
 }
 
 void fillDemoData() {
-    teachers.push_back({ 1, "Petrenko Ivan", "Programming department", 720 });
-    teachers.push_back({ 2, "Ivanenko Olena", "Math department", 680 });
-    teachers.push_back({ 3, "Shevchenko Andrii", "Computer science department", 700 });
+    teachers.push_back({ 1, "Петренко Іван Миколайович", "ЦК програмування", 720 });
+    teachers.push_back({ 2, "Іваненко Олена Сергіївна", "ЦК математики", 680 });
+    teachers.push_back({ 3, "Шевченко Андрій Петрович", "ЦК комп'ютерних наук", 700 });
 
-    subjects.push_back({ 1, "Programming", 2, 120 });
-    subjects.push_back({ 2, "Databases", 3, 90 });
-    subjects.push_back({ 3, "Higher Mathematics", 2, 100 });
-    subjects.push_back({ 4, "Computer Networks", 4, 80 });
+    subjects.push_back({ 1, "Програмування", 2, 120 });
+    subjects.push_back({ 2, "Бази даних", 3, 90 });
+    subjects.push_back({ 3, "Вища математика", 2, 100 });
+    subjects.push_back({ 4, "Комп'ютерні мережі", 4, 80 });
 
-    groups.push_back({ 1, "P-21", 2, "121 Software Engineering" });
-    groups.push_back({ 2, "P-22", 2, "121 Software Engineering" });
-    groups.push_back({ 3, "KB-11", 1, "125 Cybersecurity" });
+    groups.push_back({ 1, "П-21", 2, "121 Інженерія програмного забезпечення" });
+    groups.push_back({ 2, "П-22", 2, "121 Інженерія програмного забезпечення" });
+    groups.push_back({ 3, "КБ-11", 1, "125 Кібербезпека" });
 
-    workloads.push_back({ 1, 1, 1, 1, "lectures", 30 });
-    workloads.push_back({ 2, 1, 1, 2, "practice", 40 });
-    workloads.push_back({ 3, 2, 3, 1, "lectures", 35 });
-    workloads.push_back({ 4, 3, 2, 3, "labs", 45 });
+    workloads.push_back({ 1, 1, 1, 1, "лекції", 30 });
+    workloads.push_back({ 2, 1, 1, 2, "практичні", 40 });
+    workloads.push_back({ 3, 2, 3, 1, "лекції", 35 });
+    workloads.push_back({ 4, 3, 2, 3, "лабораторні", 45 });
 }
